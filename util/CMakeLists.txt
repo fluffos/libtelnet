@@ -1,9 +1,10 @@
 add_executable(telnet-chatd telnet-chatd.c)
 target_link_libraries(telnet-chatd
     libtelnet
-    $<$<C_COMPILER_ID:MSVC>:wsock32>
-    $<$<C_COMPILER_ID:MSVC>:ws2_32>
 )
+if(WIN32)
+    target_link_libraries(telnet-chatd wsock32 ws2_32)
+endif()
 
 if (UNIX)
     add_executable(telnet-client telnet-client.c)
@@ -19,7 +20,8 @@ target_link_libraries(telnet-test
 
 add_executable(telnet-proxy telnet-proxy.c)
 target_link_libraries(telnet-proxy
-    libtelnet
-    $<$<C_COMPILER_ID:MSVC>:wsock32>
-    $<$<C_COMPILER_ID:MSVC>:ws2_32>
-)
+    libtelnet)
+
+if(WIN32)
+    target_link_libraries(telnet-proxy wsock32 ws2_32)
+endif()

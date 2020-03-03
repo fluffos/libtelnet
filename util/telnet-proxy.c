@@ -6,7 +6,7 @@
  * in this code to the public domain. We make this dedication for the benefit
  * of the public at large and to the detriment of our heirs and successors. We
  * intend this dedication to be an overt act of relinquishment in perpetuity of
- * all present and future rights to this code under copyright law. 
+ * all present and future rights to this code under copyright law.
  */
 
 #if !defined(_WIN32)
@@ -31,7 +31,6 @@
 #endif
 
 #	define poll WSAPoll
-#	define close closesocket
 #	undef gai_strerror
 #	define gai_strerror gai_strerrorA
 #	if !defined(ECONNRESET)
@@ -399,7 +398,7 @@ int main(int argc, char **argv) {
 		}
 
 		printf("CLIENT CONNECTION RECEIVED\n");
-		
+
 		/* stop listening now that we have a client */
 		close(listen_sock);
 
@@ -413,7 +412,7 @@ int main(int argc, char **argv) {
 			close(client.sock);
 			return 1;
 		}
-		
+
 		/* create server socket */
 		if ((server.sock = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
 			fprintf(stderr, "socket() failed: %s\n", strerror(errno));
