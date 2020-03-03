@@ -23,6 +23,10 @@ else ()
 endif ()
 
 add_library(libtelnet libtelnet.c)
+set_target_properties(libtelnet
+  PROPERTIES
+  VERSION ${PROJECT_VERSION}
+  SOVERSION 2)
 
 target_include_directories(libtelnet
     PUBLIC
@@ -58,6 +62,9 @@ install(FILES libtelnet.h
 install(EXPORT libtelnet-export
     FILE libtelnet.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/libtelnet
+)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libtelnet.pc
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
 )
 
 include(CPack)
