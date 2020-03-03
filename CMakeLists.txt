@@ -11,6 +11,8 @@ if(${CMAKE_VERSION} VERSION_LESS 3.10)
     cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
 endif()
 
+include(GNUInstallDirs)
+
 if (MSVC)
     add_definitions(-D_SCL_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_WARNINGS)
     if (LIBTELNET_STRICT)
@@ -46,8 +48,6 @@ endif()
 add_subdirectory(util)
 add_subdirectory(doc)
 add_subdirectory(test)
-
-include(GNUInstallDirs)
 
 configure_file(libtelnet.pc.in libtelnet.pc)
 
